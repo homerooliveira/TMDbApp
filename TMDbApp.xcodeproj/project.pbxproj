@@ -16,9 +16,12 @@
 		8D5B2A0A218265A90035AE97 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B2A09218265A90035AE97 /* Movie.swift */; };
 		8D5B2A0D218265CD0035AE97 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B2A0C218265CD0035AE97 /* MovieDetail.swift */; };
 		8D5B2A0F218265E70035AE97 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B2A0E218265E70035AE97 /* Genre.swift */; };
+		E7B11072608B75112C0D55EA /* Pods_TMDbApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E31B1353E83BCF2E3D37527 /* Pods_TMDbApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37A1E918BD413FB05A97CB7E /* Pods-TMDbApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TMDbApp/Pods-TMDbApp.release.xcconfig"; sourceTree = "<group>"; };
+		5E31B1353E83BCF2E3D37527 /* Pods_TMDbApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDbApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B29F221823FCF0035AE97 /* TMDbApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDbApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B29F521823FCF0035AE97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D5B29F721823FCF0035AE97 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,6 +33,7 @@
 		8D5B2A09218265A90035AE97 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		8D5B2A0C218265CD0035AE97 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 		8D5B2A0E218265E70035AE97 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		CE471AAF616FE30546E5AF2F /* Pods-TMDbApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TMDbApp/Pods-TMDbApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +41,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7B11072608B75112C0D55EA /* Pods_TMDbApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		058B7C29EE6A1DA33180CFB3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E31B1353E83BCF2E3D37527 /* Pods_TMDbApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8D5B29E921823FCF0035AE97 = {
 			isa = PBXGroup;
 			children = (
 				8D5B29F421823FCF0035AE97 /* TMDbApp */,
 				8D5B29F321823FCF0035AE97 /* Products */,
+				A079C29F2C4314073F7B5F31 /* Pods */,
+				058B7C29EE6A1DA33180CFB3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,6 +99,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A079C29F2C4314073F7B5F31 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CE471AAF616FE30546E5AF2F /* Pods-TMDbApp.debug.xcconfig */,
+				37A1E918BD413FB05A97CB7E /* Pods-TMDbApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -91,6 +115,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D5B2A0421823FD00035AE97 /* Build configuration list for PBXNativeTarget "TMDbApp" */;
 			buildPhases = (
+				2E2B157A267CA4619AE13F53 /* [CP] Check Pods Manifest.lock */,
 				8D5B29EE21823FCF0035AE97 /* Sources */,
 				8D5B29EF21823FCF0035AE97 /* Frameworks */,
 				8D5B29F021823FCF0035AE97 /* Resources */,
@@ -149,6 +174,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E2B157A267CA4619AE13F53 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TMDbApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D5B29EE21823FCF0035AE97 /* Sources */ = {
@@ -304,6 +354,7 @@
 		};
 		8D5B2A0521823FD00035AE97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE471AAF616FE30546E5AF2F /* Pods-TMDbApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -322,6 +373,7 @@
 		};
 		8D5B2A0621823FD00035AE97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37A1E918BD413FB05A97CB7E /* Pods-TMDbApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
