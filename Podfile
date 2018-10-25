@@ -6,5 +6,5 @@ target 'TMDbApp' do
   use_frameworks!
 
   # Pods for TMDbApp
-
+  pod 'SwiftLint'
 end
