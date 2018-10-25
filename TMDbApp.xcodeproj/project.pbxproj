@@ -12,6 +12,10 @@
 		8D5B29FB21823FCF0035AE97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B29F921823FCF0035AE97 /* Main.storyboard */; };
 		8D5B29FD21823FD00035AE97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B29FC21823FD00035AE97 /* Assets.xcassets */; };
 		8D5B2A0021823FD00035AE97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B29FE21823FD00035AE97 /* LaunchScreen.storyboard */; };
+		8D5B2A082182659B0035AE97 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B2A072182659B0035AE97 /* Page.swift */; };
+		8D5B2A0A218265A90035AE97 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B2A09218265A90035AE97 /* Movie.swift */; };
+		8D5B2A0D218265CD0035AE97 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B2A0C218265CD0035AE97 /* MovieDetail.swift */; };
+		8D5B2A0F218265E70035AE97 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B2A0E218265E70035AE97 /* Genre.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		8D5B29FC21823FD00035AE97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D5B29FF21823FD00035AE97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D5B2A0121823FD00035AE97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D5B2A072182659B0035AE97 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		8D5B2A09218265A90035AE97 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		8D5B2A0C218265CD0035AE97 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
+		8D5B2A0E218265E70035AE97 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +68,20 @@
 				8D5B29FC21823FD00035AE97 /* Assets.xcassets */,
 				8D5B29FE21823FD00035AE97 /* LaunchScreen.storyboard */,
 				8D5B2A0121823FD00035AE97 /* Info.plist */,
+				8D5B2A0B218265BF0035AE97 /* Model */,
 			);
 			path = TMDbApp;
+			sourceTree = "<group>";
+		};
+		8D5B2A0B218265BF0035AE97 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D5B2A072182659B0035AE97 /* Page.swift */,
+				8D5B2A09218265A90035AE97 /* Movie.swift */,
+				8D5B2A0C218265CD0035AE97 /* MovieDetail.swift */,
+				8D5B2A0E218265E70035AE97 /* Genre.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +157,10 @@
 			files = (
 				8D5B29F821823FCF0035AE97 /* ViewController.swift in Sources */,
 				8D5B29F621823FCF0035AE97 /* AppDelegate.swift in Sources */,
+				8D5B2A0D218265CD0035AE97 /* MovieDetail.swift in Sources */,
+				8D5B2A0F218265E70035AE97 /* Genre.swift in Sources */,
+				8D5B2A0A218265A90035AE97 /* Movie.swift in Sources */,
+				8D5B2A082182659B0035AE97 /* Page.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
