@@ -26,6 +26,8 @@ final class UpcomingMoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
         viewModel
             .upcomingMovies
             .bind(to: tableView.rx.items(cellIdentifier: "Cell")) { (_, movie, cell) in
