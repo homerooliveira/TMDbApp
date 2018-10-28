@@ -10,9 +10,9 @@ import Foundation
 
 struct MovieDetails: Decodable {
     let id: Int
-    let name: String
+    let title: String
     let posterPath: String
-    let backstropPath: String
+    let backdropPath: String
     let genres: [Genre]
     let releaseDate: Date
 }
