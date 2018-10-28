@@ -12,6 +12,8 @@
 		8D291E12218543E000D4F122 /* UpcomingMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D291E11218543E000D4F122 /* UpcomingMoviesViewModel.swift */; };
 		8D291E14218544B200D4F122 /* MoviesTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D291E13218544B200D4F122 /* MoviesTabBarController.swift */; };
 		8D291E1821854C0700D4F122 /* UpcomingMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D291E1621854C0700D4F122 /* UpcomingMoviesViewController.xib */; };
+		8D291E1B2185672F00D4F122 /* SearchMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D291E192185672F00D4F122 /* SearchMovieViewController.swift */; };
+		8D291E1C2185672F00D4F122 /* SearchMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D291E1A2185672F00D4F122 /* SearchMovieViewController.xib */; };
 		8D5B29F621823FCF0035AE97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B29F521823FCF0035AE97 /* AppDelegate.swift */; };
 		8D5B29F821823FCF0035AE97 /* UpcomingMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B29F721823FCF0035AE97 /* UpcomingMoviesViewController.swift */; };
 		8D5B29FD21823FD00035AE97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B29FC21823FD00035AE97 /* Assets.xcassets */; };
@@ -31,6 +33,8 @@
 		8D291E11218543E000D4F122 /* UpcomingMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesViewModel.swift; sourceTree = "<group>"; };
 		8D291E13218544B200D4F122 /* MoviesTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTabBarController.swift; sourceTree = "<group>"; };
 		8D291E1621854C0700D4F122 /* UpcomingMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpcomingMoviesViewController.xib; sourceTree = "<group>"; };
+		8D291E192185672F00D4F122 /* SearchMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieViewController.swift; sourceTree = "<group>"; };
+		8D291E1A2185672F00D4F122 /* SearchMovieViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchMovieViewController.xib; sourceTree = "<group>"; };
 		8D5B29F221823FCF0035AE97 /* TMDbApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDbApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B29F521823FCF0035AE97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D5B29F721823FCF0035AE97 /* UpcomingMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 				8D291E11218543E000D4F122 /* UpcomingMoviesViewModel.swift */,
 				8D5B29F721823FCF0035AE97 /* UpcomingMoviesViewController.swift */,
 				8D291E1621854C0700D4F122 /* UpcomingMoviesViewController.xib */,
+				8D291E192185672F00D4F122 /* SearchMovieViewController.swift */,
+				8D291E1A2185672F00D4F122 /* SearchMovieViewController.xib */,
 				8D5B29FC21823FD00035AE97 /* Assets.xcassets */,
 				8D5B29FE21823FD00035AE97 /* LaunchScreen.storyboard */,
 				8D5B2A0121823FD00035AE97 /* Info.plist */,
@@ -192,6 +198,7 @@
 				8D5B2A0021823FD00035AE97 /* LaunchScreen.storyboard in Resources */,
 				8D291E1821854C0700D4F122 /* UpcomingMoviesViewController.xib in Resources */,
 				8D5B29FD21823FD00035AE97 /* Assets.xcassets in Resources */,
+				8D291E1C2185672F00D4F122 /* SearchMovieViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +281,7 @@
 				8D5B2A0D218265CD0035AE97 /* MovieDetail.swift in Sources */,
 				8D5B2A0F218265E70035AE97 /* Genre.swift in Sources */,
 				8D5B2A0A218265A90035AE97 /* Movie.swift in Sources */,
+				8D291E1B2185672F00D4F122 /* SearchMovieViewController.swift in Sources */,
 				8D291E14218544B200D4F122 /* MoviesTabBarController.swift in Sources */,
 				8D291E12218543E000D4F122 /* UpcomingMoviesViewModel.swift in Sources */,
 				8D5B2A082182659B0035AE97 /* Page.swift in Sources */,
