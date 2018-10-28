@@ -14,8 +14,9 @@ final class MoviesTabBarController: UITabBarController {
         super.init(nibName: nil, bundle: nil)
 
         let moviesViewController = makeUpcomingMoviesViewController()
+        let searchViewController = makeSearchMoviesViewController()
 
-        viewControllers = [moviesViewController]
+        viewControllers = [moviesViewController, searchViewController]
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -30,6 +31,16 @@ final class MoviesTabBarController: UITabBarController {
         let navigationViewController = UINavigationController(rootViewController: moviesViewController)
         navigationViewController.navigationBar.prefersLargeTitles = true
 
+        return navigationViewController
+    }
+    
+    func makeSearchMoviesViewController() -> UIViewController {
+        let moviesViewController = SearchMovieViewController()
+        moviesViewController.title = "Search Movies"
+        
+        let navigationViewController = UINavigationController(rootViewController: moviesViewController)
+        navigationViewController.navigationBar.prefersLargeTitles = true
+        
         return navigationViewController
     }
 }
