@@ -21,7 +21,7 @@ final class MoviesApi {
 
     func request<T: Decodable>(for endpoint: Endpoint, of type: T.Type) -> Single<T> {
         guard let url = endpoint.url else {
-            return Single.error(RxCocoaURLError.unknown)
+            return Observable.empty().asSingle()
         }
 
         let urlRequest = URLRequest(url: url)

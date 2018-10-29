@@ -11,7 +11,7 @@ import Foundation
 enum Endpoint {
     case upcomingMovies(page: Int)
     case movieDetail(movieId: Int)
-    case searchMovie(forKeyword: String)
+    case searchMovie(query: String)
 }
 
 extension Endpoint {
@@ -25,7 +25,10 @@ extension Endpoint {
         case .movieDetail(let movieId):
             return URL(string: "\(Endpoint.baseUrl)/movie/\(movieId)?\(Endpoint.apiKey)")
         case .searchMovie(let query):
-            return URL(string: "\(Endpoint.baseUrl)/search/movie?query=\(query)&\(Endpoint.apiKey)")
+            guard let queryEncoded = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+                return nil
+            }
+            return URL(string: "\(Endpoint.baseUrl)/search/movie?query=\(queryEncoded)&\(Endpoint.apiKey)")
         }
     }
 }
