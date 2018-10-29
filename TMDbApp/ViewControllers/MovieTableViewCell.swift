@@ -8,17 +8,29 @@
 
 import UIKit
 
-class MovieTableViewCell: UITableViewCell {
+final class MovieTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var posterImageView: UIImageView!
+    
+    var movie: Movie? {
+        didSet {
+            guard let movie = movie else { return  }
+            titleLabel.text = movie.title
+            guard let path = movie.posterPath else { return }
+            posterImageView.downloadImage(endpoint: .poster(path: path))
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
 }

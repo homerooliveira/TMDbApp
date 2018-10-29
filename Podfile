@@ -9,6 +9,7 @@ target 'TMDbApp' do
     pod 'SwiftLint'
     pod 'RxSwift',   '~> 4.0'
     pod 'RxCocoa',   '~> 4.0'
+    pod 'Kingfisher', '~> 4.0'
 end
 
 post_install do |installer|

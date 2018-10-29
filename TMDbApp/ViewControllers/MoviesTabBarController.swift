@@ -29,6 +29,7 @@ final class MoviesTabBarController: UITabBarController {
         moviesViewController.title = "Upcoming Movies"
 
         let navigationViewController = UINavigationController(rootViewController: moviesViewController)
+        navigationViewController.navigationBar.isTranslucent = true
         navigationViewController.navigationBar.prefersLargeTitles = true
 
         return navigationViewController
@@ -39,8 +40,8 @@ final class MoviesTabBarController: UITabBarController {
         moviesViewController.title = "Search Movies"
         
         let navigationViewController = UINavigationController(rootViewController: moviesViewController)
+        navigationViewController.navigationBar.isTranslucent = true
         navigationViewController.navigationBar.prefersLargeTitles = true
-        
         return navigationViewController
     }
 }
