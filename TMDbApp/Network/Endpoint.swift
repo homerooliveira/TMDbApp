@@ -12,12 +12,10 @@ enum Endpoint {
     case upcomingMovies(page: Int)
     case movieDetail(movieId: Int)
     case searchMovie(forKeyword: String)
-    case poster(path: String)
 }
 
 extension Endpoint {
     static let baseUrl = "https://api.themoviedb.org/3"
-    static let imageBaseUrl = "https://image.tmdb.org/t/p"
     static let apiKey = "api_key=c5850ed73901b8d268d0898a8a9d8bff"
 
     var url: URL? {
@@ -28,8 +26,6 @@ extension Endpoint {
             return URL(string: "\(Endpoint.baseUrl)/movie/\(movieId)?\(Endpoint.apiKey)")
         case .searchMovie(let query):
             return URL(string: "\(Endpoint.baseUrl)/search/movie?query=\(query)&\(Endpoint.apiKey)")
-        case .poster(let path):
-            return URL(string: "\(Endpoint.imageBaseUrl)/w154\(path)")
         }
     }
 }
