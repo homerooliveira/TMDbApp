@@ -11,6 +11,8 @@
 		8D06F7932186B9B400690BA8 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D06F7912186B9B400690BA8 /* MovieTableViewCell.swift */; };
 		8D06F7942186B9B400690BA8 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D06F7922186B9B400690BA8 /* MovieTableViewCell.xib */; };
 		8D06F7962186C83600690BA8 /* UIImageView+downloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D06F7952186C83600690BA8 /* UIImageView+downloadImage.swift */; };
+		8D06F7982187440500690BA8 /* DetailMovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D06F7972187440500690BA8 /* DetailMovieViewModel.swift */; };
+		8D06F79A2187489300690BA8 /* Observable+rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D06F7992187489300690BA8 /* Observable+rx.swift */; };
 		8D1574F621827B20007351F9 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1574F521827B20007351F9 /* Endpoint.swift */; };
 		8D1574F82182A14E007351F9 /* MoviesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1574F72182A14E007351F9 /* MoviesApi.swift */; };
 		8D291E12218543E000D4F122 /* UpcomingMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D291E11218543E000D4F122 /* UpcomingMoviesViewModel.swift */; };
@@ -38,6 +40,8 @@
 		8D06F7912186B9B400690BA8 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		8D06F7922186B9B400690BA8 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		8D06F7952186C83600690BA8 /* UIImageView+downloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+downloadImage.swift"; sourceTree = "<group>"; };
+		8D06F7972187440500690BA8 /* DetailMovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieViewModel.swift; sourceTree = "<group>"; };
+		8D06F7992187489300690BA8 /* Observable+rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+rx.swift"; sourceTree = "<group>"; };
 		8D1574F521827B20007351F9 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		8D1574F72182A14E007351F9 /* MoviesApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesApi.swift; sourceTree = "<group>"; };
 		8D291E11218543E000D4F122 /* UpcomingMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesViewModel.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				8D291E11218543E000D4F122 /* UpcomingMoviesViewModel.swift */,
+				8D06F7972187440500690BA8 /* DetailMovieViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 				8D291E1E21856E8000D4F122 /* ViewModel */,
 				8D5B2A0B218265BF0035AE97 /* Model */,
 				8D06F78F21868D8E00690BA8 /* UIScrollView+rx.swift */,
+				8D06F7992187489300690BA8 /* Observable+rx.swift */,
 			);
 			path = TMDbApp;
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 				8D5B29F621823FCF0035AE97 /* AppDelegate.swift in Sources */,
 				8D5B2A0D218265CD0035AE97 /* MovieDetail.swift in Sources */,
 				8D291E2121856F1C00D4F122 /* DetailMovieViewController.swift in Sources */,
+				8D06F79A2187489300690BA8 /* Observable+rx.swift in Sources */,
 				8D5B2A0F218265E70035AE97 /* Genre.swift in Sources */,
 				8D5B2A0A218265A90035AE97 /* Movie.swift in Sources */,
 				8D291E1B2185672F00D4F122 /* SearchMovieViewController.swift in Sources */,
@@ -328,6 +335,7 @@
 				8D5B2A082182659B0035AE97 /* Page.swift in Sources */,
 				8D06F79021868D8E00690BA8 /* UIScrollView+rx.swift in Sources */,
 				8D1574F82182A14E007351F9 /* MoviesApi.swift in Sources */,
+				8D06F7982187440500690BA8 /* DetailMovieViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

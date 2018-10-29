@@ -33,7 +33,7 @@ final class SearchMovieViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         searchResults
-            .map{ $0.results }
+            .map { $0.results }
             .bind(to: tableView.rx.items(cellIdentifier: "Cell")) { (_, movie, cell) in
                 cell.textLabel?.text = movie.title
             }

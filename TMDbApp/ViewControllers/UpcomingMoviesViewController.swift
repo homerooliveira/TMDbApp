@@ -26,7 +26,7 @@ final class UpcomingMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let cellIdentifier = String(describing: MovieTableViewCell.self)
         let nib = UINib(nibName: cellIdentifier, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellIdentifier)
@@ -34,7 +34,7 @@ final class UpcomingMoviesViewController: UIViewController {
         viewModel.movies
             .asObservable()
             .observeOn(MainScheduler.asyncInstance)
-            .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier)) { (_, movie: Movie, cell: MovieTableViewCell) in
+            .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier)) { (_, movie, cell: MovieTableViewCell) in
                 cell.movie = movie
             }
             .disposed(by: disposeBag)
@@ -45,6 +45,14 @@ final class UpcomingMoviesViewController: UIViewController {
                     .disposed(by: disposeBag)
         
         viewModel.refreshTrigger.onNext(())
+        
+        tableView.rx.modelSelected(Movie.self)
+            .subscribe(onNext: { (movie) in
+                let viewModel = DeatilMovieViewModel(movie: movie, api: self.viewModel.api)
+                let viewController = DetailMovieViewController(viewModel: viewModel)
+                self.navigationController?.pushViewController(viewController, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 
 }
