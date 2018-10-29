@@ -14,3 +14,9 @@ struct Page<T>: Decodable where T: Decodable {
     let totalResults: Int
     let totalPages: Int
 }
+
+extension Page {
+    var hasNextPage: Bool {
+        return page <= totalPages
+    }
+}

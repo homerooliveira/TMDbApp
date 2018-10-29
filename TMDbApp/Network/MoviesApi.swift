@@ -16,7 +16,6 @@ final class MoviesApi {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         let dateFormatter = DateFormatter.init()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        decoder.dateDecodingStrategy = .formatted(dateFormatter)
         return decoder
     }()
 

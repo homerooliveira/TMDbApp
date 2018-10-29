@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 final class UpcomingMoviesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -28,12 +29,19 @@ final class UpcomingMoviesViewController: UIViewController {
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        viewModel
-            .upcomingMovies
+        viewModel.refreshTrigger.onNext(())
+        
+        viewModel.movies
+            .asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "Cell")) { (_, movie, cell) in
                 cell.textLabel?.text = movie.title
             }
             .disposed(by: disposeBag)
+        
+        tableView.rx.reachedBottom
+                    .asObservable()
+                    .bind(to: viewModel.loadNextPageTrigger)
+                    .disposed(by: disposeBag)
     }
 
 }
