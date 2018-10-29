@@ -21,23 +21,24 @@ final class SearchMovieViewController: UIViewController {
         
         setupSearchController()
         
-        let searchResults = searchController.searchBar.rx.text
+        let cellIdentifier = String(describing: MovieTableViewCell.self)
+        let nib = UINib(nibName: cellIdentifier, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: cellIdentifier)
+        
+        searchController.searchBar.rx.text
             .orEmpty
             .throttle(0.3, scheduler: MainScheduler.asyncInstance)
             .distinctUntilChanged()
             .filter { !$0.isEmpty }
             .flatMapLatest { (text) in
-                self.api.request(for: .searchMovie(forKeyword: text), of: Page<Movie>.self).asObservable()
-        }
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        
-        searchResults
-            .map { $0.results }
-            .bind(to: tableView.rx.items(cellIdentifier: "Cell")) { (_, movie, cell) in
-                cell.textLabel?.text = movie.title
+                self.api.request(for: .searchMovie(query: text), of: Page<Movie>.self).asObservable()
             }
-            .disposed(by: disposeBag)
+            .map { $0.results }
+            .debug("map results")
+            .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier)) { (_, movie, cell: MovieTableViewCell) in
+                cell.movie = movie
+        }
+        .disposed(by: disposeBag)
         
     }
     
