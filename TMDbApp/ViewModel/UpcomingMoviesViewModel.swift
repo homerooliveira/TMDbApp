@@ -32,7 +32,6 @@ final class UpcomingMoviesViewModel {
                 } else {
                     return Observable<Int>.create { observer in
                         self.pageIndex = 1
-                        print("reset page index to 0")
                         observer.onNext(1)
                         observer.onCompleted()
                         return Disposables.create()
@@ -72,7 +71,7 @@ final class UpcomingMoviesViewModel {
             .debug("😈 Start response", trimOutput: true)
         
         Observable
-            .combineLatest(request, response, movies.asObservable()) { request, response, movies in
+            .combineLatest(request, response, movies.asObservable()) { _, response, movies in
                 self.isAllLoaded = !response.hasNextPage
                 return self.pageIndex == 1 ? response.results : movies + response.results
             }
@@ -81,7 +80,7 @@ final class UpcomingMoviesViewModel {
             .disposed(by: disposeBag)
         
         Observable
-            .merge(request.map{_ in true},
+            .merge(request.map { _ in true },
                    response.map { _ in false },
                    error.map { _ in false })
             .bind(to: loading)
