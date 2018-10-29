@@ -9,7 +9,7 @@
 import Foundation
 
 enum Endpoint {
-    case upcomingMovies
+    case upcomingMovies(page: Int)
     case movieDetail(movieId: Int)
     case searchMovie(forKeyword: String)
 }
@@ -20,15 +20,12 @@ extension Endpoint {
 
     var url: URL? {
         switch self {
-        case .upcomingMovies:
-            return URL(string: Endpoint.baseUrl + "/movie/upcoming?\(Endpoint.apiKey)")
+        case .upcomingMovies(let page):
+            return URL(string: "\(Endpoint.baseUrl)/movie/upcoming?\(Endpoint.apiKey)&page=\(page)")
         case .movieDetail(let movieId):
-            return URL(string: Endpoint.baseUrl + "/movie/\(movieId)?\(Endpoint.apiKey)")
-        case .searchMovie(let forKeyword):
-            let test = URLComponents()
-            
-            print(URL(string: Endpoint.baseUrl + "/search/movie?query=\(forKeyword)&\(Endpoint.apiKey)"))
-            return URL(string: Endpoint.baseUrl + "/search/movie?query=\(forKeyword)&\(Endpoint.apiKey)")
+            return URL(string: "\(Endpoint.baseUrl)/movie/\(movieId)?\(Endpoint.apiKey)")
+        case .searchMovie(let query):
+            return URL(string: "\(Endpoint.baseUrl)/search/movie?query=\(query)\(Endpoint.apiKey)")
         }
     }
 }

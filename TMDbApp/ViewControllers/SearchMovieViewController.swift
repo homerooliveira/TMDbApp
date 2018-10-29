@@ -12,22 +12,32 @@ import RxSwift
 final class SearchMovieViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    let api = MoviesApi()
+    let disposeBag = DisposeBag()
     let searchController = UISearchController(searchResultsController: nil)
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupSearchController()
         
-        searchController.searchBar.rx.text
+        let searchResults = searchController.searchBar.rx.text
             .orEmpty
             .throttle(0.3, scheduler: MainScheduler.asyncInstance)
             .distinctUntilChanged()
-            .debug()
+            .filter { !$0.isEmpty }
             .flatMapLatest { (text) in
-                return Observable.just(" ")
-        }.debug()
-        .subscribe()
+                self.api.request(for: .searchMovie(forKeyword: text), of: Page<Movie>.self).asObservable()
+        }
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        searchResults
+            .map{ $0.results }
+            .bind(to: tableView.rx.items(cellIdentifier: "Cell")) { (_, movie, cell) in
+                cell.textLabel?.text = movie.title
+            }
+            .disposed(by: disposeBag)
         
     }
     

@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchMovieViewController" customModule="TMDbApp" customModuleProvider="target">
             <connections>
                 <outlet property="searchDisplayController" destination="csX-cn-qdk" id="mpM-BI-Ksr"/>
-                <outlet property="tableView" destination="WX8-4G-uDY" id="ekk-DD-25E"/>
+                <outlet property="tableView" destination="WX8-4G-uDY" id="n6c-A9-zW7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
