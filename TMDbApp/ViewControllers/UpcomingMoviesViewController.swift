@@ -26,15 +26,16 @@ final class UpcomingMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        viewModel.refreshTrigger.onNext(())
+        let cellIdentifier = String(describing: MovieTableViewCell.self)
+        let nib = UINib(nibName: cellIdentifier, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: cellIdentifier)
         
         viewModel.movies
             .asObservable()
-            .bind(to: tableView.rx.items(cellIdentifier: "Cell")) { (_, movie, cell) in
-                cell.textLabel?.text = movie.title
+            .observeOn(MainScheduler.asyncInstance)
+            .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier)) { (_, movie: Movie, cell: MovieTableViewCell) in
+                cell.movie = movie
             }
             .disposed(by: disposeBag)
         
@@ -42,6 +43,8 @@ final class UpcomingMoviesViewController: UIViewController {
                     .asObservable()
                     .bind(to: viewModel.loadNextPageTrigger)
                     .disposed(by: disposeBag)
+        
+        viewModel.refreshTrigger.onNext(())
     }
 
 }
