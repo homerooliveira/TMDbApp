@@ -9,8 +9,25 @@
 import UIKit
 import Kingfisher
 
+enum ImageEndpoint {
+    case poster(path: String)
+}
+
+extension ImageEndpoint {
+    
+    static let baseUrl = "https://image.tmdb.org/t/p"
+    
+    var url: URL? {
+        switch self {
+        case .poster(let path):
+            return URL(string: "\(ImageEndpoint.baseUrl)/w154\(path)")
+        }
+    }
+}
+
 extension UIImageView {
-    func downloadImage(endpoint: Endpoint) {
+    func downloadImage(endpoint: ImageEndpoint) {
+        kf.indicatorType = .activity
         kf.setImage(with: endpoint.url)
     }
     
