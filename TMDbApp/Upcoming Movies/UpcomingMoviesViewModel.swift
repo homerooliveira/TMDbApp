@@ -8,14 +8,15 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 final class UpcomingMoviesViewModel {
     
     let api = MoviesApi()
     let refreshTrigger = PublishSubject<Void>()
     let loadNextPageTrigger = PublishSubject<Void>()
-    let loading = Variable<Bool>(false)
-    let movies = Variable<[Movie]>([])
+    let loading = BehaviorRelay<Bool>(value: false)
+    let movies = BehaviorRelay<[Movie]>(value: [])
     var pageIndex: Int = 1
     let error = PublishSubject<Swift.Error>()
     private let disposeBag = DisposeBag()

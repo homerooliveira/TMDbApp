@@ -27,14 +27,13 @@ final class SearchMovieViewController: UIViewController {
         
         searchController.searchBar.rx.text
             .orEmpty
+            .filter { !$0.isEmpty }
             .throttle(0.3, scheduler: MainScheduler.asyncInstance)
             .distinctUntilChanged()
-            .filter { !$0.isEmpty }
             .flatMapLatest { (text) in
                 self.api.request(for: .searchMovie(query: text), of: Page<Movie>.self).asObservable()
             }
             .map { $0.results }
-            .debug("map results")
             .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier)) { (_, movie, cell: MovieTableViewCell) in
                 cell.movie = movie
         }
