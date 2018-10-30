@@ -17,75 +17,64 @@ final class UpcomingMoviesViewModel {
     let loadNextPageTrigger = PublishSubject<Void>()
     let loading = BehaviorRelay<Bool>(value: false)
     let movies = BehaviorRelay<[Movie]>(value: [])
-    var pageIndex: Int = 1
-    let error = PublishSubject<Swift.Error>()
+    let pageIndex = BehaviorRelay<Int>(value: 1)
     private let disposeBag = DisposeBag()
-    
     private var isAllLoaded = false
     
     public init() {
         
-        let refreshRequest = loading.asObservable()
-            .sample(refreshTrigger)
-            .flatMap { loading -> Observable<Int> in
-                if loading {
-                    return Observable.empty()
-                } else {
-                    return Observable<Int>.create { observer in
-                        self.pageIndex = 1
-                        observer.onNext(1)
-                        observer.onCompleted()
-                        return Disposables.create()
-                    }
-                }
-            }
-            .debug("refreshRequest", trimOutput: true)
+        let refreshPageRequest = makeRefreshRequest()
+        let nextPageRequest = makeNextPageRequest()
         
-        let nextPageRequest = loading.asObservable()
-            .sample(loadNextPageTrigger)
-            .flatMap { loading -> Observable<Int> in
-                if loading {
-                    return Observable.empty()
-                } else {
-                    guard !self.isAllLoaded else { return Observable.empty() }
-                    
-                    return Observable<Int>.create { [unowned self] observer in
-                        self.pageIndex += 1
-                        print(self.pageIndex)
-                        observer.onNext(self.pageIndex)
-                        observer.onCompleted()
-                        return Disposables.create()
-                    }
-                }
-            }
-            .debug("nextPageRequest", trimOutput: true)
-        
-        let request = Observable.merge(refreshRequest, nextPageRequest)
+        let pageRequest = Observable.merge(refreshPageRequest, nextPageRequest)
             .share(replay: 1)
-            .debug("😀 Start request", trimOutput: true)
         
-        let response = request.flatMapLatest { page in
-             self.api.request(for: Endpoint.upcomingMovies(page: page),
-                              of: Page<Movie>.self)
-            }
-            .share(replay: 1)
-            .debug("😈 Start response", trimOutput: true)
-        
-        Observable
-            .combineLatest(request, response, movies.asObservable()) { _, response, movies in
-                self.isAllLoaded = !response.hasNextPage
-                return self.pageIndex == 1 ? response.results : movies + response.results
-            }
-            .sample(response)
-            .bind(to: movies)
+        pageRequest.bind(to: pageIndex)
             .disposed(by: disposeBag)
         
+        let response = pageRequest.flatMapLatest { page in
+            self.api.request(for: Endpoint.upcomingMovies(page: page),
+                             of: Page<Movie>.self)
+            }.share(replay: 1)
+        
+        bindToMovies(from: response)
+        
         Observable
-            .merge(request.map { _ in true },
-                   response.map { _ in false },
-                   error.map { _ in false })
+            .merge(pageRequest.map { _ in true },
+                   response.map { _ in false })
             .bind(to: loading)
             .disposed(by: disposeBag)
     }
     
+    private func makeRefreshRequest() -> Observable<Int> {
+        return refreshTrigger
+            .withLatestFrom(loading)
+            .flatMap { loading -> Observable<Int> in
+                if loading {
+                    return Observable.empty()
+                } else {
+                    return Observable.just(1)
+                }
+        }
+    }
+    
+    private func makeNextPageRequest() -> Observable<Int> {
+        return loadNextPageTrigger
+            .withLatestFrom(loading)
+            .flatMap { [unowned self] loading -> Observable<Int> in
+                guard !self.isAllLoaded && !loading else { return Observable.empty() }
+                return Observable.just(self.pageIndex.value + 1)
+        }
+    }
+    
+    private func bindToMovies(from response: Observable<Page<Movie>>) {
+        Observable
+            .combineLatest(response, self.movies) {[unowned self] response, movies in
+                self.isAllLoaded = !response.hasNextPage
+                return self.pageIndex.value == 1 ? response.results : movies + response.results
+            }
+            .sample(response)
+            .bind(to: self.movies)
+            .disposed(by: disposeBag)
+    }
 }
