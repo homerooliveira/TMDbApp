@@ -29,7 +29,7 @@ extension ImageEndpoint {
 extension UIImageView {
     func downloadImage(endpoint: ImageEndpoint) {
         kf.indicatorType = .activity
-        kf.setImage(with: endpoint.url)
+        kf.setImage(with: endpoint.url, placeholder: UIImage(named: "placeholder"))
     }
 
     func cancelDownload() {

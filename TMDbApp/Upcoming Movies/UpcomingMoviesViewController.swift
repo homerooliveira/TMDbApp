@@ -32,7 +32,7 @@ final class UpcomingMoviesViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: cellIdentifier)
         
         viewModel.movies
-            .asObservable()
+            .catchErrorJustReturn([])
             .observeOn(MainScheduler.asyncInstance)
             .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier)) { (_, movie, cell: MovieTableViewCell) in
                 cell.movie = movie
@@ -40,7 +40,6 @@ final class UpcomingMoviesViewController: UIViewController {
             .disposed(by: disposeBag)
         
         tableView.rx.reachedBottom
-                    .asObservable()
                     .bind(to: viewModel.loadNextPageTrigger)
                     .disposed(by: disposeBag)
         
