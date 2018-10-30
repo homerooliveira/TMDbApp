@@ -54,6 +54,6 @@ extension Reactive where Base: ImageView {
             return Disposables.create {
                 self.base.cancelDownload()
             }
-        }).observeOn(MainScheduler.asyncInstance)
+        })
     }
 }
