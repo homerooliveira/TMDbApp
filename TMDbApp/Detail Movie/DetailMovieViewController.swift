@@ -11,9 +11,10 @@ import RxSwift
 
 final class DetailMovieViewController: UIViewController {
 
+    @IBOutlet weak var genresTextView: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var overviewTextView: UITextView!
+    @IBOutlet weak var overviewTextView: UILabel!
     let viewModel: DeatilMovieViewModel
     let disposeBag = DisposeBag()
     
@@ -44,10 +45,17 @@ final class DetailMovieViewController: UIViewController {
         viewModel.movie
             .map { $0.posterPath }
             .unwrap()
-            .flatMap { path in
+            .flatMap { [unowned self] path in
                 self.posterImageView.rx.downloadImage(endpoint: .poster(path: path)) }
             .subscribe()
             .disposed(by: disposeBag)
+        
+        viewModel.movieDetails
+                .observeOn(MainScheduler.asyncInstance)
+                .map { "Genres: " + $0.genres.map({ $0.name }).joined(separator: ", ") }
+                .startWith("")
+                .bind(to: genresTextView.rx.text)
+                .disposed(by: disposeBag)
     }
 
 }
