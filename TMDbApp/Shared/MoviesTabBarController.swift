@@ -36,7 +36,8 @@ final class MoviesTabBarController: UITabBarController {
     }
     
     func makeSearchMoviesViewController() -> UIViewController {
-        let moviesViewController = SearchMovieViewController()
+        let searchViewModel = SearchViewModel()
+        let moviesViewController = SearchMovieViewController(viewModel: searchViewModel)
         moviesViewController.title = "Search Movies"
         
         let navigationViewController = UINavigationController(rootViewController: moviesViewController)

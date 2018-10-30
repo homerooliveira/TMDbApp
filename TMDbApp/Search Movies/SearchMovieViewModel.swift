@@ -12,16 +12,22 @@ import RxCocoa
 
 final class SearchViewModel {
     
+    let api = MoviesApi()
     let text = PublishSubject<String>()
-    let loadNextPageTrigger = PublishSubject<Void>()
-    let loading = BehaviorRelay<Bool>(value: false)
     let movies = BehaviorRelay<[Movie]>(value: [])
-    var pageIndex: Int = 1
-    let error = PublishSubject<Swift.Error>()
     private let disposeBag = DisposeBag()
-    private var isAllLoaded = false
     
-    init() {
+    public init() {
         
+        text.filter { !$0.isEmpty }
+            .throttle(0.3, scheduler: MainScheduler.asyncInstance)
+            .distinctUntilChanged()
+            .flatMapLatest { [unowned self] (text)  in
+                self.api.request(for: .searchMovie(query: text), of: Page<Movie>.self)
+            }
+            .map { $0.results }
+            .catchErrorJustReturn([])
+            .bind(to: movies)
+            .disposed(by: disposeBag)
     }
 }
