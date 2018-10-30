@@ -15,7 +15,17 @@ final class SearchMovieViewController: UIViewController {
     let api = MoviesApi()
     let disposeBag = DisposeBag()
     let searchController = UISearchController(searchResultsController: nil)
-        
+    let viewModel: SearchViewModel
+    
+    init(viewModel: SearchViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,15 +35,13 @@ final class SearchMovieViewController: UIViewController {
         let nib = UINib(nibName: cellIdentifier, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellIdentifier)
         
-        searchController.searchBar.rx.text
+        let text = searchController.searchBar.rx.text
             .orEmpty
-            .filter { !$0.isEmpty }
-            .throttle(0.3, scheduler: MainScheduler.asyncInstance)
-            .distinctUntilChanged()
-            .flatMapLatest { (text) in
-                self.api.request(for: .searchMovie(query: text), of: Page<Movie>.self).asObservable()
-            }
-            .map { $0.results }
+        
+        text.bind(to: viewModel.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.movies
             .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier)) { (_, movie, cell: MovieTableViewCell) in
                 cell.movie = movie
         }
