@@ -18,5 +18,6 @@ final class DeatilMovieViewModel {
         self.movieDetails = api.request(for: .movieDetail(movieId: movie.id),
                                         of: MovieDetails.self)
                                 .asObservable()
+                                .share(replay: 1, scope: .whileConnected)
     }
 }

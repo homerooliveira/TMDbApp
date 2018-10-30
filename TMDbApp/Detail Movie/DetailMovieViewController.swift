@@ -15,6 +15,7 @@ final class DetailMovieViewController: UIViewController {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewTextView: UILabel!
+    @IBOutlet weak var releaseDateLabel: UILabel!
     let viewModel: DeatilMovieViewModel
     let disposeBag = DisposeBag()
     
@@ -48,6 +49,12 @@ final class DetailMovieViewController: UIViewController {
             .flatMap { [unowned self] path in
                 self.posterImageView.rx.downloadImage(endpoint: .poster(path: path)) }
             .subscribe()
+            .disposed(by: disposeBag)
+        
+        viewModel.movieDetails
+            .observeOn(MainScheduler.asyncInstance)
+            .map { "Release Date: " + $0.releaseDate }
+            .bind(to: releaseDateLabel.rx.text)
             .disposed(by: disposeBag)
         
         viewModel.movieDetails
