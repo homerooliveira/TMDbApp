@@ -21,4 +21,9 @@ final class MovieTableViewCell: UITableViewCell {
             posterImageView.downloadImage(endpoint: .poster(path: path))
         }
     }
+    
+    override func prepareForReuse() {
+        posterImageView.image = UIImage(named: "placeholder")
+        super.prepareForReuse()
+    }
 }
