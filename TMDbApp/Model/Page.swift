@@ -8,15 +8,13 @@
 
 import Foundation
 
-struct Page<T>: Decodable where T: Decodable {
+struct Page<T: Decodable & Sendable>: Decodable, Sendable {
     let results: [T]
     let page: Int
     let totalResults: Int
     let totalPages: Int
-}
 
-extension Page {
     var hasNextPage: Bool {
-        return page <= totalPages
+        page < totalPages
     }
 }
