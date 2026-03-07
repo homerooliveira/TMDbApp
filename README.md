@@ -1,20 +1,34 @@
 # TMDbApp
 
-As the main challenge was to create a fully working app with pagination and search in a short period of time, the UI was not prioritized. The greatest effort was to focus on the architecture and best coding practices, so the MVVM architecture was a suitable option to abstract data and business rules.
-
-## Instalation
-
-Using terminal, go to the project folder where there is the Podfile and execute the command bellow.
-``` sh
-pod install
-```
-## Third-party libraries
-- RxSwift. Used to easily manage asynchronous computing. Example: The request of movies in the search bar. 
-- RxCocoa. Used to connect data from RxSwift to UIKit objects.
-- Kingfisher. Used to download and cache images.
+TMDbApp is now a modern Swift 6 movie browser built with SwiftUI, Swift Concurrency, Swift Testing, and Swift Package Manager for the shared core module.
 
 ## Requirements
-- iOS 11
-- Xcode 10
-- Swift 4.2
-- CocoaPods
+
+- Xcode 16+
+- iOS 17+
+- Swift 6
+
+## Configuration
+
+The app includes the same TMDb API key in source as the legacy project.
+
+You can still override it in one of these ways:
+
+1. Add `TMDB_API_KEY` to the app scheme environment variables.
+2. Or add `TMDB_API_KEY` to `TMDbApp/Info.plist` for local development.
+
+## Project Layout
+
+- `TMDbApp/App`: SwiftUI app and screens
+- `TMDbApp/Core`: package-backed shared logic, networking, and observable models
+- `Tests/TMDbCoreTests`: Swift Testing coverage
+
+## Development
+
+Run package tests:
+
+```sh
+swift test
+```
+
+Open `TMDbApp.xcodeproj` in Xcode to run the iOS app.
