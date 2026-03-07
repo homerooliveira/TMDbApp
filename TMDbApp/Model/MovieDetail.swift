@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MovieDetails: Decodable {
+struct MovieDetail: Decodable, Sendable {
     let id: Int
     let title: String
     let posterPath: String?
