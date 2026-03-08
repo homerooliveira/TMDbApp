@@ -32,8 +32,8 @@ final class UpcomingMoviesViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: cellIdentifier)
         
         viewModel.movies
-            .catchErrorJustReturn([])
-            .observeOn(MainScheduler.asyncInstance)
+            .catchAndReturn([])
+            .observe(on: MainScheduler.asyncInstance)
             .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier)) { (_, movie, cell: MovieTableViewCell) in
                 cell.movie = movie
             }

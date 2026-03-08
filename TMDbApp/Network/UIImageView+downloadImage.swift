@@ -37,19 +37,17 @@ extension UIImageView {
     }
 }
 
-extension Reactive where Base: ImageView {
+@MainActor
+extension Reactive where Base: UIImageView {
     func downloadImage(endpoint: ImageEndpoint) -> Completable {
         return Completable.create(subscribe: { (observer) -> Disposable in
-            self.base.kf.setImage(with: endpoint.url, completionHandler: { (image, error, _, _) in
-                guard image != nil else {
-                    if let error = error {
-                        observer(.error(error))
-                    } else {
-                        observer(.error(RxError.unknown))
-                    }
-                    return
+            self.base.kf.setImage(with: endpoint.url, completionHandler: { result in
+                switch result {
+                case .success:
+                    observer(.completed)
+                case .failure(let error):
+                    observer(.error(error))
                 }
-                observer(.completed)
             })
             return Disposables.create {
                 self.base.cancelDownload()

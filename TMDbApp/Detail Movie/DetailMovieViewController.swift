@@ -52,13 +52,13 @@ final class DetailMovieViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.movieDetails
-            .observeOn(MainScheduler.asyncInstance)
+            .observe(on: MainScheduler.asyncInstance)
             .map { "Release Date: " + $0.releaseDate }
             .bind(to: releaseDateLabel.rx.text)
             .disposed(by: disposeBag)
         
         viewModel.movieDetails
-                .observeOn(MainScheduler.asyncInstance)
+                .observe(on: MainScheduler.asyncInstance)
                 .map { "Genres: " + $0.genres.map({ $0.name }).joined(separator: ", ") }
                 .startWith("")
                 .bind(to: genresTextView.rx.text)

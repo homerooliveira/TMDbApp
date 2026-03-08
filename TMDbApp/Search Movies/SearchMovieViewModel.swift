@@ -20,13 +20,13 @@ final class SearchViewModel {
     public init() {
         
         text.filter { !$0.isEmpty }
-            .throttle(0.3, scheduler: MainScheduler.asyncInstance)
+            .throttle(.milliseconds(300), scheduler: MainScheduler.asyncInstance)
             .distinctUntilChanged()
             .flatMapLatest { [unowned self] (text)  in
                 self.api.request(for: .searchMovie(query: text), of: Page<Movie>.self)
             }
             .map { $0.results }
-            .catchErrorJustReturn([])
+            .catchAndReturn([])
             .bind(to: movies)
             .disposed(by: disposeBag)
     }

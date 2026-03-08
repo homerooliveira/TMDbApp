@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchMovieViewController" customModule="TMDbApp" customModuleProvider="target">
             <connections>
-                <outlet property="searchDisplayController" destination="csX-cn-qdk" id="mpM-BI-Ksr"/>
                 <outlet property="tableView" destination="WX8-4G-uDY" id="n6c-A9-zW7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -35,13 +34,5 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
-        <searchDisplayController id="csX-cn-qdk">
-            <connections>
-                <outlet property="delegate" destination="-1" id="nps-CV-pXv"/>
-                <outlet property="searchContentsController" destination="-1" id="Q02-wa-9eZ"/>
-                <outlet property="searchResultsDataSource" destination="-1" id="61R-B3-9C5"/>
-                <outlet property="searchResultsDelegate" destination="-1" id="QBK-HG-8yb"/>
-            </connections>
-        </searchDisplayController>
     </objects>
 </document>
